@@ -109,6 +109,7 @@ button {
   </select>
 
   <button id="process">Enhance Image</button>
+  <button id="download" style="display:none;background:#22c55e">⬇ Download Enhanced Image</button>
 </div>
 
 <div class="compare-container" id="compare">
@@ -158,8 +159,17 @@ button {
       afterImg.src = canvas.toDataURL('image/jpeg', 0.95);
 
       compare.style.display = 'block';
+      document.getElementById('download').style.display = 'block';
       afterWrap.style.width = '50%';
       slider.style.left = '50%';
+    });
+
+    /* Download logic */
+    document.getElementById('download').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = afterImg.src;
+      link.download = 'enhanced-image.jpg';
+      link.click();
     });
 
     /* Slider logic */
